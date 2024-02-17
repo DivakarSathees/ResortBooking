@@ -11,8 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 
-
-
 [TestFixture]
 public class dotnetappApplicationTests
 {
