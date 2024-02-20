@@ -15,7 +15,7 @@ public class UserController : ControllerBase
         _userService = userService;
     }
 
-    [AllowAnonymous]
+    // [AllowAnonymous]
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterModel model)
     {
@@ -38,7 +38,7 @@ public class UserController : ControllerBase
         return Ok(new { Message = "Registration successful", UserId = registeredUser.UserId });
     }
 
-    [AllowAnonymous]
+    // [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginModel model)
     {
