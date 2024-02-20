@@ -14,26 +14,18 @@ using dotnetapp.Service;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// builder.Services.AddCors(options =>
-// {
-//     options.AddPolicy("AllowOrigin",
-//         builder =>
-//         {
-//             builder.WithOrigins("https://8081-fffafbaadffafadfcfdfdeceebbafcbdc.premiumproject.examly.io")
-//                    .AllowAnyHeader()
-//                    .AllowAnyMethod();
-//         });
-// });
-
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
+    options.AddPolicy("AllowOrigin",
+        builder =>
+        {
+            builder.WithOrigins("https://8081-fcebccfce309511144aaeaaecbccfdbone.premiumproject.examly.io")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
 });
+
+//Demo
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
