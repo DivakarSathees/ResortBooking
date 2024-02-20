@@ -54,7 +54,7 @@ namespace dotnetapp.Controllers
  
             }
         }
-//   [Authorize(Roles = "Admin")]
+  [Authorize(Roles = "Admin")]
  
     [HttpPut("{ResortId}")]
     public async Task<IActionResult> Put(long ResortId, [FromBody] Resort resort) // Use the same parameter name as in the route
@@ -78,7 +78,7 @@ namespace dotnetapp.Controllers
     }
  
  
-//   [Authorize(Roles = "Admin")]
+  [Authorize(Roles = "Admin")]
  
     [HttpDelete("{ResortId}")]
     public async Task<IActionResult> Delete(long ResortId) // Use the same parameter name as in the route
