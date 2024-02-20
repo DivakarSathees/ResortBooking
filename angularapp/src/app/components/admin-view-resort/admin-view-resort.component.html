@@ -49,10 +49,11 @@
               <span *ngIf="!isEditing || resort !== selectedResort">{{
                 resort.resortAvailableStatus
               }}</span>
-              <input
-                *ngIf="isEditing && resort === selectedResort"
-                [(ngModel)]="resort.resortAvailableStatus"
-              />
+              <select *ngIf="isEditing && resort === selectedResort" [(ngModel)]="resort.resortAvailableStatus">
+                <option value="" disabled selected>Select Availability</option>
+                <option value="Available">Available</option>
+                <option value="Unavailable">Unavailable</option>
+                </select>
             </td>
             <td>
               <span *ngIf="!isEditing || resort !== selectedResort">{{
