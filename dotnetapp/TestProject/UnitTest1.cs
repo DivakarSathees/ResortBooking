@@ -68,8 +68,10 @@ public class dotnetappApplicationTests
         string uniqueUsername = $"abcd_{uniqueId}";
         string uniquePassword = $"abcdA{uniqueId}@123";
         string uniqueEmail = $"abcd{uniqueId}@gmail.com"; 
+        string MobNo = "9876543210"; 
 
-        string requestBody = $"{{\"Email\": \"{uniqueEmail}\", \"Password\": \"{uniquePassword}\", \"Username\": \"{uniqueUsername}\", \"UserRole\": \"Admin\"}}";
+
+        string requestBody = $"{{\"Email\": \"{uniqueEmail}\", \"Password\": \"{uniquePassword}\", \"Username\": \"{uniqueUsername}\", \"UserRole\": \"Admin\", \"MobileNumber\": \"{MobNo}\"}}";
         HttpResponseMessage response = await _httpClient.PostAsync("/api/register", new StringContent(requestBody, Encoding.UTF8, "application/json"));
 
         Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);

@@ -29,7 +29,7 @@ public class UserController : ControllerBase
         {
             Username = model.Username,
             Password = model.Password,
-            UserRole = model.Role,
+            UserRole = model.UserRole,
             Email = model.Email,
             MobileNumber = model.MobileNumber
         };
