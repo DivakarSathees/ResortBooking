@@ -54,7 +54,7 @@ namespace dotnetapp.Controllers
  
             }
         }
-//   [Authorize(Roles = "Admin")]
+  [Authorize(Roles = "Admin")]
  
     [HttpPut("{ResortId}")]
     public async Task<IActionResult> Put(long ResortId, [FromBody] Resort resort) // Use the same parameter name as in the route
@@ -78,7 +78,7 @@ namespace dotnetapp.Controllers
     }
  
  
-//   [Authorize(Roles = "Admin")]
+  [Authorize(Roles = "Admin")]
  
     [HttpDelete("{ResortId}")]
     public async Task<IActionResult> Delete(long ResortId) // Use the same parameter name as in the route
@@ -97,7 +97,7 @@ namespace dotnetapp.Controllers
             return StatusCode(500, "Internal server error");
         }
     }
-    //  [Authorize(Roles = "Customer,Admin")]
+     [Authorize(Roles = "Customer,Admin")]
     [HttpGet("{ResortId}")]
     public async Task<ActionResult<Resort>> Get(long ResortId)
     {
