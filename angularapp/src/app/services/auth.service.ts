@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { apiUrl } from 'src/apiconfig';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,8 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  register(username: string, password: string, userRole: string, email: string, mobileNumber: string): Observable<any> {
-    const body = { username, password, userRole, email, mobileNumber };
+  register(user: User): Observable<any> {
+    const body = user;
     console.log(body);
 
     return this.http.post<any>(`${this.apiUrl}/api/register`, body).pipe(
@@ -35,7 +36,7 @@ export class AuthService {
     );
   }
 
-  login(email: string, password: string): Observable<any> {
+  login(email, password): Observable<any> {
     const loginData = { email, password };
     console.log(loginData);
     return this.http.post<any>(`${this.apiUrl}/api/login`, loginData)
@@ -48,7 +49,7 @@ export class AuthService {
           if (decodedToken) {
             localStorage.setItem('userId', decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']);
             localStorage.setItem('userRole', decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);
-            localStorage.setItem('currentUser', decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress']);
+            localStorage.setItem('userName', decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']);
             console.log(localStorage.getItem('userRole'))
             // Update BehaviorSubjects
             this.userRoleSubject.next(decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);

@@ -32,6 +32,16 @@ export class ResortService {
     return this.http.get(`${this.apiUrl}/api/resort`, { headers });
   }
 
+  getResortById(resortId: any) {
+    const token = localStorage.getItem('token');
+    // console.log(token)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}` // Assuming your token is a bearer token, replace it accordingly
+    });
+    return this.http.get(`${this.apiUrl}/api/resort/${resortId}`, { headers });
+  }
+
   // updateResort(resortDetails: any) {
   //   console.log(resortDetails);
   //   const token = localStorage.getItem('token');
@@ -54,7 +64,7 @@ export class ResortService {
     return this.http.put(`${this.apiUrl}/api/resort/${resortDetails.resortId}`, resortDetails, { headers });
   }
 
-  deleteResort(resortId: string): Observable<any> {
+  deleteResort(resortId: number): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}` // Assuming your token is a bearer token, replace it accordingly
@@ -82,5 +92,16 @@ export class ResortService {
       'Authorization': `Bearer ${token}` // Assuming your token is a bearer token, replace it accordingly
     });
     return this.http.get(`${this.apiUrl}/api/review`, { headers });
+  }
+
+  getReviewsByUserId(){
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    // console.log(token)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}` // Assuming your token is a bearer token, replace it accordingly
+    });
+    return this.http.get(`${this.apiUrl}/api/review/${userId}`, { headers });
   }
 }

@@ -2,11 +2,13 @@
     <div class="main-head">
       <h1>Resort Details</h1>
     </div>
+    <div *ngIf="resorts.length > 0; else noRecordsFound">
+
     <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
-            <th>Resort Id</th>
+            <th>S.No</th>
             <th>Resort Name</th>
             <th>Resort Description</th>
             <th>Resort Image</th>
@@ -18,8 +20,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let resort of resorts">
-            <td>{{ resort.resortId }}</td>
+          <tr *ngFor="let resort of resorts; let i=index">
+            <td>{{ i+1 }}</td>
             <td>
               <span *ngIf="!isEditing || resort !== selectedResort">{{
                 resort.resortName
@@ -39,17 +41,10 @@
               ></textarea>
             </td>
             <td>
-              <img
-                *ngIf="!isEditing || resort !== selectedResort"
-                [src]="resort.resortImageUrl"
-                alt="Resort Image"
-                class="resort-image"
-              />
-              <textarea
-                *ngIf="isEditing && resort === selectedResort"
-                [(ngModel)]="resort.resortImageUrl"
-              ></textarea>
-            </td>
+              <img *ngIf="!isEditing || resort !== selectedResort" [src]="resort.resortImageUrl" alt="Resort Image" class="resort-image" />
+              <img *ngIf="isEditing || resort === selectedResort" [src]="resort.resortImageUrl" alt="Resort Image" class="resort-image" />
+              <input *ngIf="isEditing && resort === selectedResort" type="file" id="resortImageUrl" (change)="handleFileChange($event)" accept=".png, .jpg">
+          </td>
             <td>
               <span *ngIf="!isEditing || resort !== selectedResort">{{
                 resort.resortAvailableStatus
@@ -124,6 +119,11 @@
         </tbody>
       </table>
     </div>
+        </div>
+
+    <ng-template #noRecordsFound>
+      <p class="records">No data found</p>
+    </ng-template>
   </div>
   <div *ngIf="showDeletePopup" class="delete-popup">
     <p>Are you sure you want to delete?</p>

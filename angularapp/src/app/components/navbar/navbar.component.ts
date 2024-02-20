@@ -10,10 +10,14 @@ import { AuthService } from '../../services/auth.service';
 export class NavbarComponent implements OnInit {
   showLogoutPopup = false;
   isLoggedIn: boolean = false;
+  userRole: string;
+  userName: string;
 
   constructor(private authService: AuthService, private router: Router) {
     this.authService.isAuthenticated$.subscribe((authenticated: boolean) => {
       this.isLoggedIn = authenticated;
+      this.userRole = localStorage.getItem('userRole');
+      this.userName = localStorage.getItem('userName');
     });
   }
 

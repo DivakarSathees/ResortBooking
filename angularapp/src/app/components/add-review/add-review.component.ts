@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Review } from 'src/app/models/review.model'; // Assuming you have the Review model
+import { BookingService } from 'src/app/services/booking.service';
 import { ResortService } from 'src/app/services/resort.service';
 
 @Component({
@@ -11,10 +13,11 @@ import { ResortService } from 'src/app/services/resort.service';
 export class AddReviewComponent implements OnInit {
   addReviewForm: FormGroup;
   errorMessage = '';
+  resorts: any[] = [];
 
-  constructor(private fb: FormBuilder, private resortService: ResortService) {
+  constructor(private fb: FormBuilder, private resortService: ResortService, private bookingService: BookingService, private router: Router) {
     this.addReviewForm = this.fb.group({
-      userId: [Number(localStorage.getItem('userId')), Validators.required],
+      userName: [localStorage.getItem('userName'), Validators.required],
       subject: ['', Validators.required],
       body: ['', Validators.required],
       rating: ['', Validators.required],
@@ -24,6 +27,20 @@ export class AddReviewComponent implements OnInit {
 
   ngOnInit() {
     // Initialize any data or subscribe to necessary observables
+    console.log(localStorage.getItem('userName'))
+    this.getBookingsByUserId();
+  }
+//
+  getBookingsByUserId() {
+    this.bookingService.getBookingsByUserId().subscribe(
+      (data: any) => {
+        this.resorts = data;
+        console.log(this.resorts)
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   getCurrentDate(): string {
@@ -43,7 +60,15 @@ export class AddReviewComponent implements OnInit {
         subject: newReview.subject,
         body: newReview.body,
         rating: newReview.rating,
-        dateCreated: newReview.dateCreated
+        dateCreated: newReview.dateCreated,
+        // user: {
+        //   userId: Number(localStorage.getItem('userId')),
+        //   username: localStorage.getItem('userName'),
+        //   mobileNumber: '',
+        //   email: '',
+        //   userRole: '',
+        //   password:''
+        // }
       };
       console.log(requestObj)
 
@@ -51,6 +76,7 @@ export class AddReviewComponent implements OnInit {
         (response) => {
           console.log('Review added successfully', response);
           // Handle success, e.g., navigate to a different page
+          this.router.navigate(['/customer/view/review']);
           this.addReviewForm.reset(); // Reset the form
         },
         (error) => {

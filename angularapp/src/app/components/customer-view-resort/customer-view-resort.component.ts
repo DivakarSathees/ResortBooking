@@ -18,12 +18,15 @@ export class CustomerViewResortComponent implements OnInit {
 
   getAllResorts() {
     this.resortService.getAllResorts().subscribe((response: any) => {
-      console.log(response);
+      console.log("All resots",response);
       this.resorts = response;
     });
   }
 
-  navigateToAddBooking() {
-    this.router.navigate(['/customer/add/booking']);
+  navigateToAddBooking(resort) {
+
+
+    localStorage.setItem("capacity",resort.capacity)
+    this.router.navigate(['/customer/add/booking', resort.resortId]);
   }
 }

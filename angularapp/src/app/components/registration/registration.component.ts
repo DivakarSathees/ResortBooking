@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-registration',
@@ -19,15 +20,15 @@ export class RegistrationComponent implements OnInit {
   email: string = "";
   passwordMismatch: boolean = false; // New property to track password mismatch
 
-  constructor(private authService: AuthService, private router: Router,private fb: FormBuilder) {
+  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) {
 
   }
   ngOnInit() {
-   this.registrationForm = this.fb.group({
-     mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-     email: ['', [Validators.required, Validators.email]],
-   });
- }
+    this.registrationForm = this.fb.group({
+      mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      email: ['', [Validators.required, Validators.email]],
+    });
+  }
   register(): void {
     if (this.password !== this.confirmPassword) {
       this.passwordMismatch = true;
@@ -40,12 +41,20 @@ export class RegistrationComponent implements OnInit {
       return; // Password complexity check failed
     }
 
-    this.authService.register(this.username, this.password, this.userRole, this.email,this.mobileNumber).subscribe(
+    const user: User = {
+      username: this.username,
+      password: this.password,
+      userRole: this.userRole,
+      email: this.email,
+      mobileNumber: this.mobileNumber
+    }
+
+    this.authService.register(user).subscribe(
       (user) => {
         console.log(user);
 
-          this.router.navigate(['/login']);
-  
+        this.router.navigate(['/login']);
+
       },
       (error) => {
         console.log(error);

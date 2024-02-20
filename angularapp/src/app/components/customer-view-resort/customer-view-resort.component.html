@@ -4,7 +4,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Resort Id</th>
+            <th>S.No</th>
             <th>Resort Name</th>
             <th>Resort Description</th>
             <th>Resort Image</th>
@@ -16,8 +16,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let resort of resorts">
-            <td>{{ resort.resortId }}</td>
+        <tr *ngFor="let resort of resorts; let i=index">
+            <td>{{ i+1 }}</td>
             <td>{{ resort.resortName }}</td>
             <td>{{ resort.description }}</td>
             <td>
@@ -28,7 +28,7 @@
             <td>{{ resort.capacity }}</td>
             <td>{{ resort.price }}</td>
             <td>
-                <button class="edit-btn-grad btn-primary" (click)="navigateToAddBooking()">Add Booking</button>
+                <button class="edit-btn-grad btn-primary" (click)="navigateToAddBooking(resort)">Add Booking</button>
             </td>
         </tr>
     </tbody>

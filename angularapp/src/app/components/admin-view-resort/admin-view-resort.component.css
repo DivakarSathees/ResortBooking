@@ -122,3 +122,8 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+
+  .records{
+    text-align: center;
+    font-size: 20px;
+  }

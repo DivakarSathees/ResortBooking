@@ -6,8 +6,10 @@
       <li><a routerLink="/login">Login</a></li>
     </ng-container>
     <ng-container *ngIf="isLoggedIn">
+      <li>  <p class="user-role"> {{ userName}} / {{ userRole }}</p>      </li>
       <li><a routerLink="/">Home</a></li>
-      <li> <app-admin-dashboard></app-admin-dashboard>
+       <li> 
+        <app-admin-dashboard></app-admin-dashboard>
       </li>
       <li><app-customer-dashboard></app-customer-dashboard></li>
       <li>
@@ -15,6 +17,10 @@
           Logout
         </button>
       </li>
+      <!-- <li class="role">
+        <img src="https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png" alt="avatar" class="avatar"/>
+        <span class="user-role"> {{ userName}} / {{ userRole }}</span>
+      </li> -->
     </ng-container>
   </ul>
 </nav>

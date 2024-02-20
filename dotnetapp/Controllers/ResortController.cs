@@ -24,14 +24,14 @@ namespace dotnetapp.Controllers
             _resortService = resortService;
         }
        
-      [Authorize(Roles = "Customer,Admin")]
+    //   [Authorize(Roles = "Customer,Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Resort>>> Get()
         {
             var resorts = await _resortService.GetAllResortsAsync();
             return Ok(resorts);
         }
-      [Authorize(Roles = "Admin")]
+    //   [Authorize(Roles = "Admin")]
  
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Resort resort)
@@ -54,7 +54,7 @@ namespace dotnetapp.Controllers
  
             }
         }
-  [Authorize(Roles = "Admin")]
+//   [Authorize(Roles = "Admin")]
  
     [HttpPut("{ResortId}")]
     public async Task<IActionResult> Put(long ResortId, [FromBody] Resort resort) // Use the same parameter name as in the route
@@ -78,7 +78,7 @@ namespace dotnetapp.Controllers
     }
  
  
-  [Authorize(Roles = "Admin")]
+//   [Authorize(Roles = "Admin")]
  
     [HttpDelete("{ResortId}")]
     public async Task<IActionResult> Delete(long ResortId) // Use the same parameter name as in the route
@@ -97,6 +97,25 @@ namespace dotnetapp.Controllers
             return StatusCode(500, "Internal server error");
         }
     }
+    //  [Authorize(Roles = "Customer,Admin")]
+    [HttpGet("{ResortId}")]
+    public async Task<ActionResult<Resort>> Get(long ResortId)
+    {
+        try
+        {
+            var resort = await _resortService.GetResortByIdAsync(ResortId);
+            if (resort == null)
+            {
+                return NotFound();
+            }
+            return Ok(resort);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Internal server error");
+        }
+    }
+
  
     }
 }

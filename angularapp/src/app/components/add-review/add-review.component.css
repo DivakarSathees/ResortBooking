@@ -24,7 +24,7 @@ label {
 }
 
 input,
-textarea {
+textarea,select {
   width: 90%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -48,3 +48,28 @@ button:hover {
   color: #ff0000;
   margin-top: 5px;
 }
+
+.rating-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating-option {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.rating-option input {
+  margin-bottom: 5px;
+}
+
+.validation{
+  display: flex;
+}
+
+label{
+  color: black !important;
+}
+

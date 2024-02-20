@@ -45,12 +45,12 @@ export class AuthGuard implements CanActivate {
   }
 
   private isAdminRoute(url: string): boolean {
-    const adminRoutes = ['admin/dashboard', 'admin/add/resort', 'admin/view/resort', 'admin/view/bookings', 'admin/view/reviews'];
+    const adminRoutes = [ 'admin/add/resort', 'admin/view/resort', 'admin/view/bookings', 'admin/view/review'];
     return adminRoutes.some(route => url.includes(route));
   }
 
   private isCustomerRoute(url: string): boolean {
-    const customerRoutes = ['customer/dashboard', 'customer/view/resort', 'customer/add/booking', 'customer/view/bookings', 'customer/add/review'];
+    const customerRoutes = [ 'customer/view/resort', 'customer/add/booking/:id', 'customer/view/bookings', 'customer/add/review', 'customer/view/review'];
     return customerRoutes.some(route => url.includes(route));
   }
 
@@ -59,3 +59,5 @@ export class AuthGuard implements CanActivate {
     return commonRoutes.some(route => url.includes(route));
   }
 }
+
+//final

@@ -1,4 +1,13 @@
 /* Style for the main heading */
+#viewBookingHomeBody {
+  position: relative;
+}
+
+/* Style for blurred background when the delete popup is shown */
+.blur {
+  filter: blur(8px);
+}
+
 h1 {
   text-align: center;
   margin-top:8px;
@@ -27,7 +36,7 @@ label {
 
 /* Style for input fields */
 input,
-select {
+select, textarea {
   width: 100%;
   padding: 8px;
   margin-top: 3px;
@@ -59,6 +68,7 @@ button {
   transition: background-color 0.3s;
   width: 100%;
   font-size: 16px;
+  margin-bottom:10px;
 }
 
 button:hover {
@@ -78,5 +88,56 @@ button:hover {
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
+  border-radius: 10px;
+    font-size: 17px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* AddBookingComponent CSS */
+
+.confirmation-popup {
+  /* display: none; */
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  /* z-index: 1000; */
+}
+
+.confirmation-popup p, .success-popup p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.confirmation-popup button, .success-popup button {
+  margin:10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirmation-popup button:hover, .success-popup button:hover {
+  background-color: #45a049;
+}
+
+.buttons{
+  display:flex;
+}
+/* Add more styling as needed */
+
+.validation{
+  display: flex;
+}
+
+label{
+  color: black !important;
 }

@@ -17,6 +17,7 @@
   }
   
   label {
+    margin-top:8px;
     margin-bottom: 8px;
   }
   
@@ -27,8 +28,8 @@
   
   .error-message {
     color: #ff0000;
-    margin-top: 4px;
-    margin-bottom:4px
+    /* margin-top: 4px; */
+    margin-bottom:10px
   }
   
   button {
@@ -59,4 +60,10 @@
   .register-link a:hover {
     text-decoration: underline;
   }
+  .validation{
+    display: flex;
+  }
   
+  label{
+    color: black !important;
+  }
