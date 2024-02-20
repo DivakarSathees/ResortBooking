@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
     const user: User = {
       username: this.username,
       password: this.password,
-      userRole: this.userRole,
+      role: this.userRole,
       email: this.email,
       mobileNumber: this.mobileNumber
     }
