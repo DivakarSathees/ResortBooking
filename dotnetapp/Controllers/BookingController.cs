@@ -36,13 +36,14 @@ public class BookingController : ControllerBase
         return Ok(booking);
     }
  
-    [Authorize(Roles = "Customer")]    //get by userid
+    // [Authorize(Roles = "Customer")]    //get by userid
     [HttpGet("user/{UserId}")]
     public async Task<IActionResult> GetBookingsByUserId(long UserId)
     {
         try
         {
             var bookings = await _bookingRepo.GetBookingsByUserIdAsync(UserId);
+            Console.WriteLine("bookings"+bookings);
             return Ok(bookings);
         }
         catch (Exception ex)
@@ -51,7 +52,7 @@ public class BookingController : ControllerBase
             return StatusCode(500);
         }
     }
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     [HttpGet("booking")]      //get all the booking
     public async Task<IActionResult> GetAllBookings()
     {
