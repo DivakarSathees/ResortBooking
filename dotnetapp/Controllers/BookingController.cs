@@ -178,7 +178,7 @@ public async Task<IActionResult> AddBooking([FromBody] Booking booking)
             Booking = addedBooking,
             User = user
         };
-
+//
         return Ok(response);
     }
     catch (Exception ex)
