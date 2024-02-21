@@ -91,7 +91,7 @@ public class BookingController : ControllerBase
     //     }
     // }
  
-    [Authorize(Roles = "Customer")]
+    [Authorize]
     [HttpDelete("booking/{bookingId}")]
     public async Task<IActionResult> DeleteBooking(long bookingId)
     {
