@@ -67,7 +67,8 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('userRole');
     localStorage.removeItem('userId');
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('capacity');
     this.currentUserSubject.next(null);
   }
 

@@ -12,8 +12,8 @@ using dotnetapp.Models;
 namespace dotnetapp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240221042506_ss")]
-    partial class ss
+    [Migration("20240221134100_abcd")]
+    partial class abcd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
