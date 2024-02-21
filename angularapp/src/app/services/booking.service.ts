@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { apiUrl } from 'src/apiconfig';
+import { Booking } from '../models/booking.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class BookingService {
 
   constructor(private http: HttpClient) {}
 
-  addBooking(booking: any) {
+  addBooking(booking: Booking) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
