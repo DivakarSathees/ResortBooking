@@ -153,6 +153,13 @@ public async Task<IActionResult> AddBooking([FromBody] Booking booking)
             // Handle the case where the user is not found (optional)
             return BadRequest("User not found");
         }
+        // long userId = booking.UserId ?? 0; // Convert nullable long to long, defaulting to 0 if null
+        // var user = await _userService.GetUserByIdAsync(userId);
+        // if (user == null)
+        // {
+        //     // Handle the case where the user is not found (optional)
+        //     return BadRequest("User not found");
+        // }
 
         // Include user details in the response
         var response = new
