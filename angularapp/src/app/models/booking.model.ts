@@ -9,7 +9,7 @@ export class Booking {
   status: string;
   totalPrice: number;
   address: string;
-  userId: number; // Nullable foreign key
+  userId?: number; // Nullable foreign key
   user?: User; // Nullable navigation property
   resortId?: number; // Nullable foreign key
   resort?: Resort; // Nullable navigation property

@@ -24,7 +24,7 @@ namespace dotnetapp.Models
         public string Address { get; set; }
  
         // Foreign key for the Many-to-One relationship with User
-        public long UserId { get; set; } // Nullable foreign key
+        public long? UserId { get; set; } // Nullable foreign key
    // [JsonIgnore]
  
         [ForeignKey(nameof(UserId))]
