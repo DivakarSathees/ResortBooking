@@ -23,7 +23,7 @@ public class BookingController : ControllerBase
 
     }
  
-    // [Authorize(Roles = "Admin,Customer")]  //get by bookingid
+    [Authorize]  //get by bookingid
     [HttpGet("booking/{bookingId}")]
     public async Task<IActionResult> GetBooking(long bookingId)
     {
@@ -52,6 +52,7 @@ public class BookingController : ControllerBase
     //         return StatusCode(500);
     //     }
     // }
+    [Authorize(Roles = "Customer")]
 
 
        [HttpGet("user/{UserId}")]
@@ -68,7 +69,7 @@ public class BookingController : ControllerBase
             return StatusCode(500);
         }
     }
-    // [Authorize(Roles = "Admin")]
+    [Authorize]
     [HttpGet("booking")]      //get all the booking
     public async Task<IActionResult> GetAllBookings()
     {
@@ -145,7 +146,7 @@ public async Task<IActionResult> UpdateBooking(long bookingId, [FromBody] Bookin
     var updatedData = await _bookingRepo.GetBookingByIdAsync(bookingId);
     return Ok(updatedData);
 }
-//  [Authorize(Roles = "Customer")]
+ [Authorize(Roles = "Customer")]
 [HttpPost("booking")]
 public async Task<IActionResult> AddBooking([FromBody] Booking booking)
 {
