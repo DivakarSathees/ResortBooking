@@ -131,7 +131,7 @@ public class dotnetappApplicationTests
         };
 
         string requestBody = JsonConvert.SerializeObject(review);
-        HttpResponseMessage response = await _httpClient.PostAsync("/api/review", new StringContent(requestBody, Encoding.UTF8, "application/json"));
+        HttpResponseMessage response = await _httpClient.PostAsync("/api/Review", new StringContent(requestBody, Encoding.UTF8, "application/json"));
         
        Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
     }
