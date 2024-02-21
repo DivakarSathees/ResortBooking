@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { apiUrl } from 'src/apiconfig';
 import { Observable } from 'rxjs';
 import { Resort } from '../models/resort.model';
+import { Review } from '../models/review.model';
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +55,7 @@ export class ResortService {
   //   return this.http.put(`${this.apiUrl}/api/resort/${resortDetails.resortId}`, { headers, resortDetails });
   // }
 
-  updateResort(resortDetails: any): Observable<any> {
+  updateResort(resortDetails: Resort): Observable<any> {
     console.log(resortDetails.resortId)
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
@@ -62,7 +63,7 @@ export class ResortService {
       'Authorization': `Bearer ${token}` // Assuming your token is a bearer token, replace it accordingly
     });
 
-    return this.http.put(`${this.apiUrl}/api/resort`, resortDetails, { headers });
+    return this.http.put(`${this.apiUrl}/api/resort/${resortDetails.resortId}`, resortDetails, { headers });
   }
 
   deleteResort(resortId: number): Observable<any> {
@@ -74,7 +75,7 @@ export class ResortService {
     return this.http.delete(`${this.apiUrl}/api/resort/${resortId}`, { headers });
   }
 
-  addReview(review: any): Observable<any> {
+  addReview(review: Review): Observable<any> {
     const token = localStorage.getItem('token');
     // console.log(token)
     const headers = new HttpHeaders({
