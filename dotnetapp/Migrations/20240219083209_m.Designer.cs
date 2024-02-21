@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dotnetapp.Models;
 
@@ -11,9 +12,10 @@ using dotnetapp.Models;
 namespace dotnetapp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240219083209_m")]
+    partial class m
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,26 +33,24 @@ namespace dotnetapp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("BookingId"), 1L, 1);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("FromDate")
+                    b.Property<DateTime?>("FromDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("NoOfPersons")
+                    b.Property<int?>("NoOfPersons")
                         .HasColumnType("int");
 
                     b.Property<long?>("ResortId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ToDate")
+                    b.Property<DateTime?>("ToDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("TotalPrice")
+                    b.Property<double?>("TotalPrice")
                         .HasColumnType("float");
 
                     b.Property<long?>("UserId")
@@ -145,14 +145,12 @@ namespace dotnetapp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("UserId"), 1L, 1);
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserRole")

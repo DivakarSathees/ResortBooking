@@ -13,7 +13,7 @@ namespace dotnetapp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
- // [Authorize(Roles = "Admin")]
+ [Authorize(Roles = "Admin")]
  
     public class ResortController : ControllerBase
     {
@@ -31,7 +31,7 @@ namespace dotnetapp.Controllers
             var resorts = await _resortService.GetAllResortsAsync();
             return Ok(resorts);
         }
-    //   [Authorize(Roles = "Admin")]
+      [Authorize(Roles = "Admin")]
  
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Resort resort)
