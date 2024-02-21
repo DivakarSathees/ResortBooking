@@ -22,7 +22,7 @@ namespace dotnetapp.Controllers
 
         }
                 
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAllReviews()
         {
@@ -44,7 +44,7 @@ namespace dotnetapp.Controllers
         //     var addedReview = await _reviewService.AddReviewAsync(review);
         //     return Ok(addedReview);
         // }
-        [Authorize(Roles = "Admin,Customer")]
+        [Authorize(Roles = "Customer")]
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetReviewsByUserId(long userId)
         {

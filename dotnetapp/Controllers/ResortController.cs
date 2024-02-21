@@ -24,7 +24,7 @@ namespace dotnetapp.Controllers
             _resortService = resortService;
         }
        
-    //   [Authorize(Roles = "Customer,Admin")]
+      [Authorize]
     
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Resort>>> Get()
@@ -98,7 +98,7 @@ namespace dotnetapp.Controllers
             return StatusCode(500, "Internal server error");
         }
     }
-     [Authorize(Roles = "Customer,Admin")]
+     [Authorize]
     [HttpGet("{ResortId}")]
     public async Task<ActionResult<Resort>> Get(long ResortId)
     {

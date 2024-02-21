@@ -172,7 +172,7 @@ public async Task<IActionResult> AddBooking([FromBody] Booking booking)
             return BadRequest("User not found");
         }
 
-        // Include user details in the response
+        // Include user details in the responses
         var response = new
         {
             Booking = addedBooking,
