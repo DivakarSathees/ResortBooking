@@ -24,7 +24,7 @@ namespace dotnetapp.Controllers
             _resortService = resortService;
         }
        
-      [Authorize(Roles = "Customer,Admin")]
+      [Authorize(Roles = "Customer")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Resort>>> Get()
         {
