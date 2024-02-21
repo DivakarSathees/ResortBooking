@@ -13,7 +13,7 @@ namespace dotnetapp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
- [Authorize(Roles = "Admin")]
+//  [Authorize(Roles = "Admin")]
  
     public class ResortController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace dotnetapp.Controllers
             _resortService = resortService;
         }
        
-    //   [Authorize(Roles = "Customer,Admin")]
+      [Authorize(Roles = "Customer,Admin")]
     
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Resort>>> Get()
