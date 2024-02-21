@@ -51,7 +51,7 @@ public class BookingController : ControllerBase
             return StatusCode(500);
         }
     }
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [HttpGet("booking")]      //get all the booking
     public async Task<IActionResult> GetAllBookings()
     {
