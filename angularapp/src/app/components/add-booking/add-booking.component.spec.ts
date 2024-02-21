@@ -1,42 +1,40 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
+import { ReactiveFormsModule, FormBuilder } from '@angular/forms';  // Import ReactiveFormsModule and FormBuilder
+import { ActivatedRoute } from '@angular/router';
 import { AddBookingComponent } from './add-booking.component';
-import { BookingService } from 'src/app/services/booking.service';
-import { ResortService } from 'src/app/services/resort.service';
 
 describe('AddBookingComponent', () => {
   let component: AddBookingComponent;
   let fixture: ComponentFixture<AddBookingComponent>;
-  let bookingServiceSpy: jasmine.SpyObj<BookingService>;
-  let resortServiceSpy: jasmine.SpyObj<ResortService>;
+
+  // Mock ActivatedRoute
+  const mockActivatedRoute = {
+    snapshot: {
+      paramMap: {
+        get: () => '1', // Adjust this value based on your test scenario
+      },
+    },
+  };
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [AddBookingComponent],
+      imports: [ReactiveFormsModule],  // Import ReactiveFormsModule here
+      providers: [
+        FormBuilder,  // Provide FormBuilder here
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+      ],
+    })
+    .compileComponents();
+  });
 
   beforeEach(() => {
-    const bookingSpy = jasmine.createSpyObj('BookingService', ['getAllBookings', 'addBooking']);
-    const resortSpy = jasmine.createSpyObj('ResortService', ['getResortById']);
-
-    TestBed.configureTestingModule({
-      declarations: [AddBookingComponent],
-      imports: [ReactiveFormsModule, RouterTestingModule],
-      providers: [
-        { provide: BookingService, useValue: bookingSpy },
-        { provide: ResortService, useValue: resortSpy }
-      ],
-    });
-
     fixture = TestBed.createComponent(AddBookingComponent);
     component = fixture.componentInstance;
-    bookingServiceSpy = TestBed.inject(BookingService) as jasmine.SpyObj<BookingService>;
-    resortServiceSpy = TestBed.inject(ResortService) as jasmine.SpyObj<ResortService>;
+    fixture.detectChanges();
   });
 
-  fit('should create', () => {
-    expect(component).toBeTruthy();
+  fit('Frontend_should_define_makePayment_method', () => {
+    expect(component['makePayment']).toBeTruthy();
   });
-
-  fit('should set showSuccessPopup to true on successful payment', () => {
-    expect(component.['makePayment']).toBeDefined();
-  });
-
 });

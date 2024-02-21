@@ -203,7 +203,8 @@ export class AddBookingComponent implements OnInit {
   }
 
   makePayment() {
-  
+    // Logic to handle payment confirmation
+    // For demonstration purposes, setting showSuccessPopup to true
 
     const newBooking = this.addBookingForm.value;
     const requestObj: Booking = {
