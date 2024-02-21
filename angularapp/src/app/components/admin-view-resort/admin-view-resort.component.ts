@@ -96,7 +96,7 @@ export class AdminViewResortComponent implements OnInit {
     console.log('Edit Resort - Selected Resort After:', this.selectedResort);
 }
 
-  updateResort(resortDetails: any) {
+  updateResort(resortDetails: Resort) {
     if (this.photoImage) {
       // If a new image is selected, update the resort's image URL
       resortDetails.resortImageUrl = this.photoImage;
