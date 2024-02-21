@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using dotnetapp.Models;
 using dotnetapp.Repository;
 using dotnetapp.Service;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +26,21 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddControllers();
+// builder.Services.AddControllers();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.PropertyNamingPolicy = null; // Use original property names
+ 
+});
+
+
+
+
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

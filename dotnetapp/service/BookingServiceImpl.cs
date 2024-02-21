@@ -18,7 +18,11 @@ namespace dotnetapp.Service
         {
             return await _bookingRepo.GetBookingByIdAsync(id);
         }
-        public async Task<IEnumerable<Booking>> GetBookingsByUserIdAsync(long userId)
+        // public async Task<IEnumerable<Booking>> GetBookingsByUserIdAsync(long userId)
+        // {
+        //     return await _bookingRepo.GetBookingsByUserIdAsync(userId);
+        // }
+         public async Task<IEnumerable<Booking>> GetBookingsByUserIdAsync(long userId)
         {
             return await _bookingRepo.GetBookingsByUserIdAsync(userId);
         }

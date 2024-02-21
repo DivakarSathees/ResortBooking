@@ -39,7 +39,16 @@ namespace dotnetapp.Repository
                          .ToListAsync();  
         }
     
-        public async Task<IEnumerable<Booking>> GetBookingsByUserIdAsync(long userId)
+        // public async Task<IEnumerable<Booking>> GetBookingsByUserIdAsync(long userId)
+        // {
+        //     return await _context.Bookings
+        //                         .Where(b => b.UserId == userId)
+        //                         .Include(b => b.Resort)
+        //                          .Include(b => b.User) // Include user data
+
+        //                         .ToListAsync();
+        // }
+       public async Task<IEnumerable<Booking>> GetBookingsByUserIdAsync(long userId)
         {
             return await _context.Bookings
                                 .Where(b => b.UserId == userId)
@@ -48,7 +57,6 @@ namespace dotnetapp.Repository
 
                                 .ToListAsync();
         }
-
  
         public async Task<Booking> AddBookingAsync(Booking booking)
         {

@@ -23,7 +23,7 @@ public class BookingController : ControllerBase
 
     }
  
-    [Authorize(Roles = "Admin,Customer")]  //get by bookingid
+    // [Authorize(Roles = "Admin,Customer")]  //get by bookingid
     [HttpGet("booking/{bookingId}")]
     public async Task<IActionResult> GetBooking(long bookingId)
     {
@@ -37,13 +37,29 @@ public class BookingController : ControllerBase
     }
  
     // [Authorize(Roles = "Customer")]    //get by userid
-    [HttpGet("user/{UserId}")]
+    // [HttpGet("user/{UserId}")]
+    // public async Task<IActionResult> GetBookingsByUserId(long UserId)
+    // {
+    //     try
+    //     {
+    //         var bookings = await _bookingRepo.GetBookingsByUserIdAsync(UserId);
+    //         Console.WriteLine("bookings"+bookings);
+    //         return Ok(bookings);
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         Console.WriteLine($"Error occurred while fetching bookings for user {UserId}: {ex.Message}");
+    //         return StatusCode(500);
+    //     }
+    // }
+
+
+       [HttpGet("user/{UserId}")]
     public async Task<IActionResult> GetBookingsByUserId(long UserId)
     {
         try
         {
             var bookings = await _bookingRepo.GetBookingsByUserIdAsync(UserId);
-            Console.WriteLine("bookings"+bookings);
             return Ok(bookings);
         }
         catch (Exception ex)
@@ -129,7 +145,7 @@ public async Task<IActionResult> UpdateBooking(long bookingId, [FromBody] Bookin
     var updatedData = await _bookingRepo.GetBookingByIdAsync(bookingId);
     return Ok(updatedData);
 }
- [Authorize(Roles = "Customer")]
+//  [Authorize(Roles = "Customer")]
 [HttpPost("booking")]
 public async Task<IActionResult> AddBooking([FromBody] Booking booking)
 {
