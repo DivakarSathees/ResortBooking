@@ -24,7 +24,7 @@ namespace dotnetapp.Models
 
         public string Description { get; set; }
         // [JsonIgnore]
-        public virtual ICollection<Booking> Bookings { get; set; }//n
+        public virtual ICollection<Booking>? Bookings { get; set; }
     }
 }
 

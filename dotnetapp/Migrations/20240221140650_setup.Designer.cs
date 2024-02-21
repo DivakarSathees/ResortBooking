@@ -12,8 +12,8 @@ using dotnetapp.Models;
 namespace dotnetapp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240221134100_abcd")]
-    partial class abcd
+    [Migration("20240221140650_setup")]
+    partial class setup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,11 +26,11 @@ namespace dotnetapp.Migrations
 
             modelBuilder.Entity("dotnetapp.Models.Booking", b =>
                 {
-                    b.Property<long?>("BookingId")
+                    b.Property<long>("BookingId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("BookingId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("BookingId"), 1L, 1);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -42,7 +42,7 @@ namespace dotnetapp.Migrations
                     b.Property<int>("NoOfPersons")
                         .HasColumnType("int");
 
-                    b.Property<long?>("ResortId")
+                    b.Property<long>("ResortId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Status")
@@ -56,6 +56,7 @@ namespace dotnetapp.Migrations
                         .HasColumnType("float");
 
                     b.Property<long?>("UserId")
+                        .IsRequired()
                         .HasColumnType("bigint");
 
                     b.HasKey("BookingId");
@@ -140,17 +141,18 @@ namespace dotnetapp.Migrations
 
             modelBuilder.Entity("dotnetapp.Models.User", b =>
                 {
-                    b.Property<long?>("UserId")
+                    b.Property<long>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("UserId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("UserId"), 1L, 1);
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -158,9 +160,11 @@ namespace dotnetapp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserRole")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
@@ -172,11 +176,15 @@ namespace dotnetapp.Migrations
                 {
                     b.HasOne("dotnetapp.Models.Resort", "Resort")
                         .WithMany("Bookings")
-                        .HasForeignKey("ResortId");
+                        .HasForeignKey("ResortId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("dotnetapp.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Resort");
 

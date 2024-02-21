@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace dotnetapp.Migrations
 {
-    public partial class abcd : Migration
+    public partial class setup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,9 +36,9 @@ namespace dotnetapp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MobileNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserRole = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MobileNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserRole = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,8 +57,8 @@ namespace dotnetapp.Migrations
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TotalPrice = table.Column<double>(type: "float", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<long>(type: "bigint", nullable: true),
-                    ResortId = table.Column<long>(type: "bigint", nullable: true)
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    ResortId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -67,12 +67,14 @@ namespace dotnetapp.Migrations
                         name: "FK_Bookings_Resorts_ResortId",
                         column: x => x.ResortId,
                         principalTable: "Resorts",
-                        principalColumn: "ResortId");
+                        principalColumn: "ResortId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Bookings_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId");
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

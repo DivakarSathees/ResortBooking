@@ -24,6 +24,6 @@ namespace dotnetapp.Models
         public DateTime DateCreated { get; set; }
      //   [JsonIgnore]
         [ForeignKey(nameof(UserId))]
-        public virtual User User { get; set; }//n
+        public virtual User? User { get; set; }
     }
 }
